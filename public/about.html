@@ -1,0 +1,462 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Autodoc ENT | About</title>
+
+<style>
+.logout-btn{
+background:#f5f1e8;
+color:#1e1a16;
+padding:6px 16px;
+border-radius:5px;
+font-weight:bold;
+margin-left:15px;
+transition:0.3s;
+text-decoration:none;
+}
+
+.logout-btn:hover{
+background:#e2dbcf;
+}
+
+body{
+margin:0;
+font-family:Georgia, serif;
+background:#1e1a16;
+color:#f5f1e8;
+overflow-x:hidden;
+}
+
+/* NAVBAR */
+
+.reg{
+position:fixed;
+top:0;
+width:100%;
+background:#2a231c;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 8%;
+z-index:1000;
+box-sizing:border-box;
+}
+
+.logo-area{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+.logo-area img{
+height:65px;
+}
+
+.brand-text{
+font-size:42px;
+color:#f5f1e8;
+white-space:nowrap;
+}
+
+.nav-links{
+display:flex;
+gap:30px;
+}
+
+.nav-links a{
+color:#f5f1e8;
+text-decoration:none;
+font-size:18px;
+transition:0.3s;
+}
+
+.nav-links a:hover{
+opacity:0.5;
+}
+
+/* HERO WITH LARGE BLURRED BACKGROUND */
+
+.hero{
+position:relative;
+height:100vh;
+display:flex;
+flex-direction:column;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:0 10%;
+overflow:hidden;
+}
+
+.hero::before{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80");
+background-size:cover;
+background-position:center;
+filter:blur(10px);
+transform:scale(1.1);
+z-index:1;
+}
+
+.hero::after{
+content:"";
+position:absolute;
+top:0;
+left:0;
+width:100%;
+height:100%;
+background:rgba(30,26,22,0.85);
+z-index:2;
+}
+
+.hero h1,
+.hero p{
+position:relative;
+z-index:3;
+}
+
+.hero h1{
+font-size:72px;
+margin-bottom:25px;
+}
+
+.hero p{
+font-size:24px;
+max-width:900px;
+line-height:1.8;
+}
+
+/* SECTION */
+
+.section{
+padding:140px 12%;
+display:flex;
+align-items:center;
+gap:60px;
+}
+
+.section.reverse{
+flex-direction:row-reverse;
+}
+
+.section img{
+width:45%;
+border-radius:18px;
+box-shadow:0 20px 40px rgba(0,0,0,0.4);
+}
+
+.section-content{
+width:55%;
+}
+
+.section-content h2{
+font-size:52px;
+margin-bottom:25px;
+}
+
+.section-content p{
+font-size:22px;
+line-height:1.9;
+}
+
+/* LEARNING GRID */
+
+.learn-section{
+padding:120px 12%;
+background:#2a231c;
+text-align:center;
+}
+
+.learn-section h2{
+font-size:60px;
+margin-bottom:60px;
+}
+
+.learn-grid{
+display:grid;
+grid-template-columns:repeat(3,1fr);
+gap:35px;
+max-width:1200px;
+margin:auto;
+}
+
+.learnbox{
+background:#3a3027;
+padding:50px;
+border-radius:15px;
+transition:0.4s;
+}
+
+.learnbox a{
+text-decoration:none;
+color:#f5f1e8;
+font-size:22px;
+}
+
+.learnbox:hover{
+transform:translateY(-10px);
+background:#4a3b2f;
+}
+
+/* CTA */
+
+.cta{
+padding:140px 12%;
+text-align:center;
+background:
+linear-gradient(rgba(30,26,22,0.9), rgba(30,26,22,0.9)),
+url("https://images.unsplash.com/photo-1493238792000-8113da705763");
+background-size:cover;
+background-position:center;
+}
+
+.cta h2{
+font-size:60px;
+margin-bottom:40px;
+}
+
+.cta a{
+background:#f5f1e8;
+color:#1e1a16;
+padding:18px 45px;
+font-size:24px;
+border-radius:8px;
+text-decoration:none;
+transition:0.3s;
+}
+
+.cta a:hover{
+background:#e2dbcf;
+}
+
+/* FOOTER */
+
+.footer{
+background:#2a231c;
+text-align:center;
+padding:60px 0;
+color:#f5f1e8;
+font-size:18px;
+}
+
+/* SCROLL ANIMATION */
+
+.reveal{
+opacity:0;
+transform:translateY(60px);
+transition:all 1s ease;
+}
+
+.reveal.active{
+opacity:1;
+transform:translateY(0);
+}
+
+/* RESPONSIVE */
+
+@media(max-width:1000px){
+.section{
+flex-direction:column;
+}
+.section img,
+.section-content{
+width:100%;
+}
+.learn-grid{
+grid-template-columns:repeat(2,1fr);
+}
+}
+
+@media(max-width:600px){
+.hero h1{
+font-size:42px;
+}
+.learn-grid{
+grid-template-columns:1fr;
+}
+}
+
+</style>
+</head>
+
+<body>
+
+<div class="reg">
+<div class="logo-area">
+<img src="logo.png">
+<div class="brand-text">Autodoc ENT</div>
+</div>
+
+<div class="nav-links">
+<a href="#" onclick="goHome()">Home</a>
+<a href="#" onclick="goLogin()">Login</a>
+<a href="#" onclick="goRegister()">Register</a>
+<a href="#" onclick="goAssessment()">Assessment</a>
+</div>
+</div>
+
+<div class="hero reveal">
+<h1>About Autodoc ENT</h1>
+<p>
+A structured automotive learning platform designed to simplify internal vehicle systems 
+and transform complexity into clarity.
+</p>
+</div>
+
+<div class="section reveal">
+<img src="https://images.unsplash.com/photo-1517520287167-4bbf64a00d66">
+<div class="section-content">
+<h2>Our Mission</h2>
+<p>
+We demystify automotive engineering by breaking down engines, transmissions and 
+internal systems into structured, understandable modules. 
+Complex mechanical systems become approachable, logical and practical.
+</p>
+</div>
+</div>
+
+<div class="section reverse reveal">
+<img src="https://images.unsplash.com/photo-1518770660439-4636190af475?auto=format&fit=crop&w=1920&q=80">
+<div class="section-content">
+<h2>What Sets Us Apart</h2>
+<p>
+Clear conceptual explanation, structured progression, and interactive understanding.
+We don’t just describe parts — we build mechanical intuition.
+</p>
+</div>
+</div>
+
+<div class="learn-section reveal">
+<h2>What You'll Learn</h2>
+
+<div class="learn-grid">
+<div class="learnbox"><a href="cc1.html">Engine Components</a></div>
+<div class="learnbox"><a href="cc2.html">Transmission Systems</a></div>
+<div class="learnbox"><a href="cc3.html">Mufflers</a></div>
+<div class="learnbox"><a href="cc4.html">Camshafts</a></div>
+<div class="learnbox"><a href="cc5.html">Flywheel Systems</a></div>
+</div>
+
+</div>
+
+<div class="cta reveal">
+<h2>Test Your Knowledge</h2>
+<a href="assessment.html">Challenge Yourself</a>
+</div>
+
+<div class="footer">
+© Autodoc | Designed by Madhav Tiwary
+</div>
+
+<script>
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries => {
+entries.forEach(entry => {
+if(entry.isIntersecting){
+entry.target.classList.add('active');
+}
+});
+}, { threshold: 0.2 });
+
+reveals.forEach(el => observer.observe(el));
+</script>
+<script>
+
+/* Get cookie value */
+
+function getCookie(name){
+
+let cookies=document.cookie.split(";");
+
+for(let c of cookies){
+
+let [key,value]=c.trim().split("=");
+
+if(key===name){
+return value;
+}
+
+}
+
+return null;
+
+}
+
+/* Logout function */
+
+function logout(){
+
+document.cookie="autodocUser=; expires=Thu, 01 Jan 1970 00:00:00 UTC; path=/;";
+location.reload();
+
+}
+
+/* Navbar update */
+
+window.addEventListener("load",function(){
+
+const user=getCookie("autodocUser");
+
+if(user){
+
+const nav=document.querySelector(".reg");
+
+const links=nav.querySelectorAll("a");
+
+/* remove Login + Register */
+
+links.forEach(link=>{
+if(link.href.includes("Loginfront") || link.href.includes("LoginREG")){
+link.remove();
+}
+});
+
+/* Welcome text */
+
+const welcome=document.createElement("span");
+welcome.innerText="Welcome " + user;
+welcome.style.marginLeft="20px";
+
+nav.appendChild(welcome);
+
+/* Logout button */
+
+const logoutBtn=document.createElement("a");
+logoutBtn.innerText="Logout";
+logoutBtn.href="#";
+logoutBtn.className="logout-btn";
+logoutBtn.onclick=logout;
+
+nav.appendChild(logoutBtn);
+
+}
+
+});
+
+</script>
+<script>
+function goHome(){
+window.location.href="/";
+}
+
+function goLogin(){
+window.location.href="/login";
+}
+
+function goRegister(){
+window.location.href="/register";
+}
+
+function goAssessment(){
+window.location.href="/assessment";
+}
+</script>
+</body>
+</html>

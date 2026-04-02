@@ -1,0 +1,358 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Autodoc ENT | Engine Module</title>
+
+<style>
+
+/* (ALL YOUR CSS — UNCHANGED) */
+
+body{
+margin:0;
+font-family:Georgia, serif;
+background:#1e1a16;
+color:#f5f1e8;
+overflow-x:hidden;
+font-size:20px;
+}
+
+.navbar{
+position:fixed;
+top:0;
+left:0;
+width:100%;
+background:#2a231c;
+display:flex;
+justify-content:space-between;
+align-items:center;
+padding:20px 60px;
+box-sizing:border-box;
+z-index:1000;
+}
+
+.logo-area{
+display:flex;
+align-items:center;
+gap:20px;
+}
+
+.logo-area img{
+height:60px;
+}
+
+.brand{
+font-size:40px;
+}
+
+.nav-links{
+display:flex;
+gap:30px;
+}
+
+.nav-links a{
+color:#f5f1e8;
+text-decoration:none;
+font-size:20px;
+transition:0.3s;
+}
+
+.nav-links a:hover{
+opacity:0.7;
+}
+
+/* REST CSS UNCHANGED */
+
+.hero{
+height:90vh;
+display:flex;
+justify-content:center;
+align-items:center;
+text-align:center;
+padding:0 10%;
+background:
+linear-gradient(rgba(30,26,22,0.85), rgba(30,26,22,0.85)),
+url("https://images.unsplash.com/photo-1503376780353-7e6692767b70?auto=format&fit=crop&w=1920&q=80");
+background-size:cover;
+background-position:center;
+}
+
+.hero h1{
+font-size:100px;
+}
+
+.section{
+padding:160px 10%;
+display:flex;
+gap:60px;
+align-items:center;
+}
+
+.section-content{ flex:1; }
+
+.section-content h2{
+font-size:70px;
+margin-bottom:30px;
+}
+
+.section-content p{
+font-size:26px;
+line-height:1.9;
+}
+
+.section-content ul{
+font-size:24px;
+line-height:2;
+}
+
+.section-image{ flex:1; }
+
+.section-image img{
+width:100%;
+border-radius:20px;
+box-shadow:0 25px 50px rgba(0,0,0,0.6);
+}
+
+.video-section{
+padding:140px 10%;
+text-align:center;
+}
+
+.video-section h2{
+font-size:70px;
+margin-bottom:40px;
+}
+
+.custom-video{
+position:relative;
+max-width:900px;
+margin:40px auto;
+cursor:pointer;
+}
+
+.custom-video img{
+width:100%;
+border-radius:20px;
+box-shadow:0 25px 50px rgba(0,0,0,0.6);
+transition:0.4s;
+}
+
+.custom-video:hover img{
+filter:brightness(0.7);
+transform:scale(1.03);
+}
+
+.play-button{
+position:absolute;
+top:50%;
+left:50%;
+transform:translate(-50%,-50%);
+background:rgba(0,0,0,0.6);
+width:100px;
+height:100px;
+border-radius:50%;
+display:flex;
+align-items:center;
+justify-content:center;
+font-size:50px;
+color:white;
+}
+
+.quiz{
+background:#2a231c;
+padding:120px 10%;
+}
+
+.quiz h2{
+font-size:70px;
+text-align:center;
+margin-bottom:50px;
+}
+
+.question{
+margin-bottom:35px;
+font-size:26px;
+}
+
+.quiz button{
+background:#f5f1e8;
+color:#1e1a16;
+border:none;
+padding:18px 40px;
+font-size:22px;
+border-radius:10px;
+cursor:pointer;
+}
+
+.result{
+margin-top:30px;
+font-size:26px;
+display:none;
+}
+
+.pass{ color:#6becc7; }
+.fail{ color:#ff6b6b; }
+
+.footer{
+background:#2a231c;
+text-align:center;
+padding:50px;
+font-size:18px;
+}
+
+</style>
+</head>
+
+<body>
+
+<!-- NAVBAR -->
+<div class="navbar">
+<div class="logo-area">
+<img src="/logo.png"> <!-- FIXED -->
+<div class="brand">Autodoc ENT</div>
+</div>
+
+<div class="nav-links">
+<a href="#" onclick="goHome()">Home</a> <!-- FIXED -->
+<a href="/about.html">About</a>
+<a href="#" onclick="goAssessment()">Assessment</a> <!-- FIXED -->
+</div>
+</div>
+
+<!-- CONTENT (UNCHANGED) -->
+<div class="hero">
+<h1>Engine Internal Systems</h1>
+</div>
+
+<div class="section reveal">
+<div class="section-content">
+<h2>Engine Basics</h2>
+<p>The engine is the heart of the vehicle. It converts chemical energy from fuel into mechanical energy that drives the wheels.</p>
+
+<ul>
+<li><strong>Cylinder Block:</strong> Houses pistons and crankshaft.</li>
+<li><strong>Pistons:</strong> Move vertically to compress fuel-air mixture.</li>
+<li><strong>Crankshaft:</strong> Converts piston motion into rotational motion.</li>
+<li><strong>Camshaft:</strong> Controls intake and exhaust valves.</li>
+</ul>
+</div>
+
+<div class="section-image">
+<img src="https://images.unsplash.com/photo-1708870619160-a9bb906cdfcb?q=80&w=1200&auto=format&fit=crop">
+</div>
+</div>
+
+<div class="video-section reveal">
+<h2>4-Stroke Combustion Cycle</h2>
+
+<div class="custom-video" onclick="openVideo()">
+<img src="https://images.unsplash.com/photo-1518552781564-0b3a3a6a9e44?auto=format&fit=crop&w=1200&q=80">
+<div class="play-button">▶</div>
+</div>
+
+<p style="font-size:22px; opacity:0.8;">
+Click to watch full animation breakdown on YouTube
+</p>
+</div>
+
+<div class="quiz reveal">
+<h2>Quick Knowledge Check</h2>
+
+<div class="question">
+1. What converts fuel energy into mechanical motion?<br>
+<input type="radio" name="q1" value="0"> Fuel Injector<br>
+<input type="radio" name="q1" value="1"> Engine<br>
+<input type="radio" name="q1" value="0"> Radiator
+</div>
+
+<div class="question">
+2. Which component converts vertical motion to rotational motion?<br>
+<input type="radio" name="q2" value="0"> Camshaft<br>
+<input type="radio" name="q2" value="1"> Crankshaft<br>
+<input type="radio" name="q2" value="0"> Spark Plug
+</div>
+
+<div class="question">
+3. How many strokes in a standard 4-stroke engine?<br>
+<input type="radio" name="q3" value="1"> 4<br>
+<input type="radio" name="q3" value="0"> 2<br>
+<input type="radio" name="q3" value="0"> 6
+</div>
+
+<button onclick="evaluateQuiz()">Submit Answers</button>
+
+<div class="result" id="quizResult"></div>
+</div>
+
+<div class="footer">
+© Autodoc ENT | Engine Learning Module
+</div>
+
+<script>
+
+/* NAVIGATION FIX */
+function goHome(){ window.location.href="/"; }
+function goAssessment(){ window.location.href="/assessment"; }
+
+/* SCROLL REVEAL */
+const reveals = document.querySelectorAll('.reveal');
+const observer = new IntersectionObserver(entries=>{
+entries.forEach(entry=>{
+if(entry.isIntersecting){
+entry.target.classList.add('active');
+}
+});
+},{threshold:0.2});
+reveals.forEach(el=>observer.observe(el));
+
+/* QUIZ */
+function evaluateQuiz(){
+let score=0;
+for(let i=1;i<=3;i++){
+const ans=document.querySelector('input[name="q'+i+'"]:checked');
+if(ans){ score+=parseInt(ans.value); }
+}
+const result=document.getElementById("quizResult");
+result.style.display="block";
+
+if(score>=2){
+result.className="result pass";
+result.innerHTML="Excellent. You scored "+score+"/3 — Engine fundamentals understood.";
+}else{
+result.className="result fail";
+result.innerHTML="You scored "+score+"/3 — Review the module and try again.";
+}
+}
+
+/* VIDEO */
+function openVideo(){
+window.open("https://youtu.be/Pu7g3uIG6Zo","_blank");
+}
+
+/* LOGIN CHECK FIX */
+function getCookie(name){
+let cookies=document.cookie.split(";");
+for(let c of cookies){
+let [key,value]=c.trim().split("=");
+if(key===name){ return value; }
+}
+return null;
+}
+
+window.addEventListener("load",function(){
+const user=getCookie("autodocUser");
+
+if(!user){
+alert("Please login to access this module.");
+window.location.href="/login"; /* FIXED */
+}
+});
+
+/* SAVE PROGRESS */
+localStorage.setItem("lastModule", window.location.pathname);
+
+</script>
+
+</body>
+</html>
