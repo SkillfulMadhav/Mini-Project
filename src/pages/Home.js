@@ -141,5 +141,106 @@ function Home() {
     </div>
   );
 }
+const navbar = {
+  position: "fixed",
+  top: 0,
+  width: "100%",
+  background: "#2a231c",
+  display: "flex",
+  justifyContent: "space-between",
+  alignItems: "center",
+  padding: "15px 60px",
+  boxSizing: "border-box",
+  zIndex: 1000
+};
 
+const logoArea = {
+  display: "flex",
+  alignItems: "center",
+  gap: "15px"
+};
+
+const brand = {
+  fontSize: "32px",
+  fontWeight: "bold"
+};
+
+const navLinks = {
+  display: "flex",
+  gap: "30px",
+  alignItems: "center"
+};
+
+const hero = {
+  height: "100vh",
+  background: "url(https://images.unsplash.com/photo-1503376780353-7e6692767b70) center/cover",
+  display: "flex",
+  flexDirection: "column",
+  justifyContent: "flex-end",
+  padding: "0 10% 100px"
+};
+
+const heroTitle = { fontSize: "60px" };
+
+const heroText = { fontSize: "22px", maxWidth: "700px" };
+
+const btn = {
+  background: "#f5f1e8",
+  color: "#1e1a16",
+  padding: "12px 26px",
+  borderRadius: "6px",
+  textDecoration: "none"
+};
+
+const banner = {
+  marginTop: "10px",
+  background: "rgba(0,0,0,0.6)",
+  padding: "10px 20px",
+  borderRadius: "6px"
+};
+
+const section = {
+  position: "relative",
+  padding: "120px 10%",
+  minHeight: "90vh",
+  overflow: "hidden",
+  display: "flex",
+  alignItems: "flex-end"
+};
+
+const bg = {
+  position: "absolute",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "120%",
+  backgroundSize: "cover",
+  backgroundPosition: "center",
+  zIndex: 0
+};
+
+const overlay = {
+  position: "absolute",
+  top: 0,
+  left: 0,
+  width: "100%",
+  height: "100%",
+  background: "rgba(30,26,22,0.75)",
+  zIndex: 1
+};
+
+const content = {
+  maxWidth: "800px",
+  zIndex: 2
+};
+
+const darkBox = {
+  background: "rgba(0,0,0,0.65)",
+  padding: "50px",
+  borderRadius: "8px"
+};
+
+const h2 = { fontSize: "45px" };
+
+const p = { fontSize: "22px", lineHeight: "1.8" };
 export default Home;
