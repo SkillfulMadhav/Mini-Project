@@ -24,7 +24,7 @@ function Navbar() {
         <a href="/about.html" className="nav-link">About</a>
         <a href="/feedback.html" className="nav-link">Feedback</a>
 
-        {!user ? (//Conditional rendering
+        {!user ? (
           <>
             <NavLink to="/login" className="nav-link">Login</NavLink>
             <NavLink to="/register" className="nav-link">Register</NavLink>

@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 function Login() {
-  const [username, setUsername] = useState("");//useState stores input
+  const [username, setUsername] = useState("");
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext); // correct usage, Stores User globally
+  const { login } = useContext(AuthContext);
 
   /* Animation on load */
   const [active, setActive] = useState(false);
@@ -21,20 +21,20 @@ function Login() {
 
   /* LOGIN LOGIC */
   const handleLogin = () => {
-    const users = JSON.parse(localStorage.getItem("users")) || [];//fetch stored users
+    const users = JSON.parse(localStorage.getItem("users")) || [];
 
     const userMatch = users.find(
-      (u) => u.username === username && u.password === password//Array.find validates credentials
+      (u) => u.username === username && u.password === password
     );
 
     if (userMatch) {
-      login(username); //correct (replaces cookie line)
+      login(username);
 
       setError("");
       setSuccess(true);
 
       setTimeout(() => {
-        navigate("/"); // home after Login                                     -
+        navigate("/");     
       }, 1500);
     } else {
       setError("Invalid username or password.");

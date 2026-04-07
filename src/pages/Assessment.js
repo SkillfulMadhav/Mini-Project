@@ -86,7 +86,7 @@ function Assessment() {
   /* ---------------- GENERATE QUIZ ---------------- */
 
   const generateQuiz = () => {
-    const shuffled = [...questionBank].sort(() => 0.5 - Math.random());//shuffling
+    const shuffled = [...questionBank].sort(() => 0.5 - Math.random());
     const selected = shuffled.slice(0, 5);
 
     setQuestions(selected);
@@ -97,6 +97,7 @@ function Assessment() {
 
   useEffect(() => {
     generateQuiz();
+    // eslint-disable-next-line
   }, []);
 
   /* ---------------- HANDLE ANSWERS ---------------- */

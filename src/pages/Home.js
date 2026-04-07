@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
 function Home() {
-  const { user } = useContext(AuthContext);//useContext gets logged in user globally
+  const { user } = useContext(AuthContext);
 
   const words = [
     { term: "Transmission", meaning: "Transfers power from engine to wheels." },
@@ -12,45 +12,52 @@ function Home() {
     { term: "Radiator", meaning: "Prevents overheating." }
   ];
 
-  const [word, setWord] = useState("");//useState stores Word of the day5
+  const [word, setWord] = useState("");
   const [lastModule, setLastModule] = useState("");
 
-  /* WORD ROTATION */
-  useEffect(() => {
-    const updateWord = () => {
-      const random = Math.floor(Math.random() * words.length);
-      setWord(words[random].term + " - " + words[random].meaning);  
-    };
-    updateWord();
-    const interval = setInterval(updateWord, 6000);//useEffect updates automotive term every 6 sec
-    return () => clearInterval(interval);
-  }, []);
+// WORD ROTATION
+useEffect(() => {
+  const updateWord = () => {
+    if (!words || words.length === 0) return;
 
-  /* RESUME */
-  useEffect(() => {
-    const module = localStorage.getItem("lastModule");//shows Continue Learning
-    if (module) setLastModule(module);
-  }, []);
+    const random = Math.floor(Math.random() * words.length);
+    setWord(words[random].term + " - " + words[random].meaning);
+  };
 
-  /* PARALLAX */
-  useEffect(() => {
-    const handleScroll = () => {
-      document.querySelectorAll(".section").forEach(section => {
-        const bg = section.querySelector(".section-image");
-        if (!bg) return;
+  updateWord();
+  const interval = setInterval(updateWord, 6000);
 
-        const rect = section.getBoundingClientRect();
-        const speed = 0.2;
+  return () => clearInterval(interval);
+}, [words]); // ✅ FIXED
 
-        bg.style.transform = `translateY(${rect.top * speed}px)`;
-      });
-    };
 
-    window.addEventListener("scroll", handleScroll);//moves background images parallax scroll
-    return () => window.removeEventListener("scroll", handleScroll);
-  }, []);
+// RESUME
+useEffect(() => {
+  const module = localStorage.getItem("lastModule");
+  if (module) setLastModule(module);
+}, []); // ✅ fine (no external dependency)
+
+
+// PARALLAX
+useEffect(() => {
+  const handleScroll = () => {
+    document.querySelectorAll(".section").forEach((section) => {
+      const bg = section.querySelector(".section-image");
+      if (!bg) return;
+
+      const rect = section.getBoundingClientRect();
+      const speed = 0.2;
+
+      bg.style.transform = `translateY(${rect.top * speed}px)`;
+    });
+  };
+
+  window.addEventListener("scroll", handleScroll);
+
+  return () => window.removeEventListener("scroll", handleScroll);
+}, []);
   
-//Change UI based on Login state(below at Welcome {user})
+
   return (
     <div style={{ background: "#1e1a16", color: "#f5f1e8" }}>
 

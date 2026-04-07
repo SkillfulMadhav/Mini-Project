@@ -13,7 +13,7 @@ function App() {
 
       {/* Prevent navbar overlap */}
       <div style={{ paddingTop: "80px" }}>
-        <Routes>//sdxasd
+        <Routes>
           <Route path="/" element={<Home />} />
           <Route path="/login" element={<Login />} />
           <Route path="/register" element={<Register />} />
@@ -21,7 +21,6 @@ function App() {
         </Routes>
       </div>
     </Router>
-    //React Router enables SPA(no page reload), connect all pages
   );
 }
 

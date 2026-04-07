@@ -63,7 +63,7 @@ function Register() {
     const val = form.password;
 
     setRules({
-      lower: /[a-z]/.test(val),//Regular expression
+      lower: /[a-z]/.test(val),
       upper: /[A-Z]/.test(val),
       number: /\d/.test(val),
       length: val.length >= 8,
@@ -97,7 +97,7 @@ function Register() {
       return;
     }
 
-    users.push(form);//new User Registered
+    users.push(form);
     localStorage.setItem("users", JSON.stringify(users));
 
     /* Set session */
