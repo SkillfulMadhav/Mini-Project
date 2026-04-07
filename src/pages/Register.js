@@ -30,7 +30,8 @@ function Register() {
   /* ---------------- ANIMATION ---------------- */
 
   useEffect(() => {
-    setTimeout(() => setActive(true), 200);
+    const timer = setTimeout(() => setActive(true), 200);
+    return () => clearTimeout(timer);
   }, []);
 
   /* ---------------- HANDLE INPUT ---------------- */
@@ -38,23 +39,29 @@ function Register() {
   const handleChange = (e) => {
     const { name, value } = e.target;
 
-    setForm({ ...form, [name]: value });
+    setForm((prev) => {
+      const updated = { ...prev, [name]: value };
 
-    /* Autosave */
-    localStorage.setItem("draft_" + name, value);
+      // Autosave
+      localStorage.setItem("draft_" + name, value);
+
+      return updated;
+    });
   };
 
   /* ---------------- LOAD DRAFT ---------------- */
 
   useEffect(() => {
-    const newForm = { ...form };
+    setForm((prev) => {
+      const newForm = { ...prev };
 
-    Object.keys(newForm).forEach((key) => {
-      const saved = localStorage.getItem("draft_" + key);
-      if (saved) newForm[key] = saved;
+      Object.keys(newForm).forEach((key) => {
+        const saved = localStorage.getItem("draft_" + key);
+        if (saved) newForm[key] = saved;
+      });
+
+      return newForm;
     });
-
-    setForm(newForm);
   }, []);
 
   /* ---------------- PASSWORD VALIDATION ---------------- */
@@ -69,20 +76,18 @@ function Register() {
       length: val.length >= 8,
       match: val === form.confirmPassword && val !== "",
     });
-  }, [form.password, form.confirmPassword]);
+  }, [form.password, form.confirmPassword]); // ✅ already correct
 
   /* ---------------- SUBMIT ---------------- */
 
   const handleSubmit = (e) => {
     e.preventDefault();
 
-    /* Check all rules */
     if (Object.values(rules).includes(false)) {
       alert("Please satisfy all password requirements.");
       return;
     }
 
-    /* Email regex */
     const emailPattern = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
     if (!emailPattern.test(form.email)) {
       alert("Enter a valid email.");
@@ -91,7 +96,6 @@ function Register() {
 
     let users = JSON.parse(localStorage.getItem("users")) || [];
 
-    /* Duplicate check */
     if (users.find((u) => u.username === form.username)) {
       alert("Username already exists.");
       return;
@@ -100,10 +104,8 @@ function Register() {
     users.push(form);
     localStorage.setItem("users", JSON.stringify(users));
 
-    /* Set session */
     document.cookie = "autodocUser=" + form.username + "; path=/";
 
-    /* Clear drafts */
     Object.keys(form).forEach((key) =>
       localStorage.removeItem("draft_" + key)
     );
@@ -155,25 +157,21 @@ function Register() {
               </h1>
 
               <form onSubmit={handleSubmit}>
-                {[
-                  "firstname",
-                  "lastname",
-                  "age",
-                  "email",
-                  "username",
-                ].map((field) => (
-                  <div key={field} style={{ marginBottom: "20px" }}>
-                    <input
-                      type={field === "age" ? "number" : "text"}
-                      name={field}
-                      placeholder={field}
-                      value={form[field]}
-                      onChange={handleChange}
-                      required
-                      style={inputStyle}
-                    />
-                  </div>
-                ))}
+                {["firstname", "lastname", "age", "email", "username"].map(
+                  (field) => (
+                    <div key={field} style={{ marginBottom: "20px" }}>
+                      <input
+                        type={field === "age" ? "number" : "text"}
+                        name={field}
+                        placeholder={field}
+                        value={form[field]}
+                        onChange={handleChange}
+                        required
+                        style={inputStyle}
+                      />
+                    </div>
+                  )
+                )}
 
                 {/* PASSWORD */}
                 <div style={{ marginBottom: "20px" }}>
