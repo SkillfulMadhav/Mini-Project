@@ -3,14 +3,14 @@ import { useNavigate } from "react-router-dom";
 import { AuthContext } from "../context/AuthContext";
 
 function Login() {
-  const [username, setUsername] = useState("");
+  const [username, setUsername] = useState("");//useState stores input
   const [password, setPassword] = useState("");
   const [showPassword, setShowPassword] = useState(false);
   const [error, setError] = useState("");
   const [success, setSuccess] = useState(false);
 
   const navigate = useNavigate();
-  const { login } = useContext(AuthContext); // ✅ correct usage
+  const { login } = useContext(AuthContext); // correct usage, Stores User globally
 
   /* Animation on load */
   const [active, setActive] = useState(false);
@@ -21,20 +21,20 @@ function Login() {
 
   /* LOGIN LOGIC */
   const handleLogin = () => {
-    const users = JSON.parse(localStorage.getItem("users")) || [];
+    const users = JSON.parse(localStorage.getItem("users")) || [];//fetch stored users
 
     const userMatch = users.find(
-      (u) => u.username === username && u.password === password
+      (u) => u.username === username && u.password === password//Array.find validates credentials
     );
 
     if (userMatch) {
-      login(username); // ✅ correct (replaces cookie line)
+      login(username); //correct (replaces cookie line)
 
       setError("");
       setSuccess(true);
 
       setTimeout(() => {
-        navigate("/"); // go to home
+        navigate("/"); // home after Login                                     -
       }, 1500);
     } else {
       setError("Invalid username or password.");
@@ -45,7 +45,7 @@ function Login() {
   return (
     <div style={{ background: "#1e1a16", minHeight: "100vh", color: "#f5f1e8" }}>
       
-      {/* LOGIN SECTION */}
+      {/* LOGIN SECTION */ }
       <div
         style={{
           minHeight: "100vh",
@@ -119,10 +119,11 @@ function Login() {
             >
               {showPassword ? "Hide Password" : "Show Password"}
             </span>
+            
           </div>
 
           <button
-            onClick={handleLogin}
+            onClick={handleLogin}/*Ehand Triggers login Logic*/                        
             style={{
               width: "100%",
               padding: "12px",

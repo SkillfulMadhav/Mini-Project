@@ -1,6 +1,6 @@
 import { createContext, useState, useEffect } from "react";
 
-export const AuthContext = createContext();
+export const AuthContext = createContext();//central authentication system
 
 export function AuthProvider({ children }) {
   const [user, setUser] = useState(null);
@@ -19,7 +19,7 @@ export function AuthProvider({ children }) {
   /* LOGIN */
   const login = (username) => {
     document.cookie = "autodocUser=" + username + "; path=/";
-    setUser(username);
+    setUser(username);//controls entire app login state
   };
 
   /* LOGOUT */

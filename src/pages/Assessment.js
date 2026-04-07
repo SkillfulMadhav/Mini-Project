@@ -86,7 +86,7 @@ function Assessment() {
   /* ---------------- GENERATE QUIZ ---------------- */
 
   const generateQuiz = () => {
-    const shuffled = [...questionBank].sort(() => 0.5 - Math.random());
+    const shuffled = [...questionBank].sort(() => 0.5 - Math.random());//shuffling
     const selected = shuffled.slice(0, 5);
 
     setQuestions(selected);

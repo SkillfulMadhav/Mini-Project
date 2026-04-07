@@ -2,7 +2,7 @@ import { useEffect, useState, useContext } from "react";
 import { AuthContext } from "../context/AuthContext";
 
 function Home() {
-  const { user } = useContext(AuthContext);
+  const { user } = useContext(AuthContext);//useContext gets logged in user globally
 
   const words = [
     { term: "Transmission", meaning: "Transfers power from engine to wheels." },
@@ -12,24 +12,23 @@ function Home() {
     { term: "Radiator", meaning: "Prevents overheating." }
   ];
 
-  const [word, setWord] = useState("");
+  const [word, setWord] = useState("");//useState stores Word of the day5
   const [lastModule, setLastModule] = useState("");
 
   /* WORD ROTATION */
   useEffect(() => {
     const updateWord = () => {
       const random = Math.floor(Math.random() * words.length);
-      setWord(words[random].term + " - " + words[random].meaning);
+      setWord(words[random].term + " - " + words[random].meaning);  
     };
-
     updateWord();
-    const interval = setInterval(updateWord, 6000);
+    const interval = setInterval(updateWord, 6000);//useEffect updates automotive term every 6 sec
     return () => clearInterval(interval);
   }, []);
 
   /* RESUME */
   useEffect(() => {
-    const module = localStorage.getItem("lastModule");
+    const module = localStorage.getItem("lastModule");//shows Continue Learning
     if (module) setLastModule(module);
   }, []);
 
@@ -47,10 +46,11 @@ function Home() {
       });
     };
 
-    window.addEventListener("scroll", handleScroll);
+    window.addEventListener("scroll", handleScroll);//moves background images parallax scroll
     return () => window.removeEventListener("scroll", handleScroll);
   }, []);
-
+  
+//Change UI based on Login state(below at Welcome {user})
   return (
     <div style={{ background: "#1e1a16", color: "#f5f1e8" }}>
 
@@ -72,11 +72,9 @@ function Home() {
               <a href="/login" className="nav-link">Login</a>
             </>
           )}
-
           {user && <span style={{ marginLeft: "20px" }}>Welcome {user}</span>}
         </div>
       </div>
-
       {/* HERO */}
       <div style={hero}>
         <h1 style={heroTitle}>Understand What Moves You</h1>
